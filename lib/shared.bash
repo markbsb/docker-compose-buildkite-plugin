@@ -237,3 +237,11 @@ function is_windows() {
 function is_macos() {
   [[ "$OSTYPE" =~ ^(darwin) ]]
 }
+
+# If buildkit has been asked for, set the environment variables
+if [[ "$(plugin_read_config BUILDKIT "false")" == "true" ]] ; then
+  echo "Using BUILDKIT..."
+  export COMPOSE_DOCKER_CLI_BUILD=1
+  export DOCKER_BUILDKIT=1
+  export BUILDKIT_PROGRESS=plain
+fi
