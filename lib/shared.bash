@@ -18,6 +18,7 @@ function plugin_prompt() {
 # Shows the command being run, and runs it
 function plugin_prompt_and_run() {
   plugin_prompt "$@"
+  env | grep DOCKER
   "$@"
 }
 
